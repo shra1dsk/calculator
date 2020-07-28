@@ -1,0 +1,26 @@
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration debug="false">
+
+    <!--Console appender-->
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{yyyy-MM-dd HH:mm:ss} %p %m%n" />
+        </layout>
+    </appender>
+    <appender name="fout" class="org.apache.log4j.FileAppender">
+        <param name="file" value="log.out"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="threshold" value="debug"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{yyyy-MM-dd HH:mm:ss} %p %m%n" />
+        </layout>
+    </appender>
+
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="fout" />
+    </root>
+
+</log4j:configuration>
