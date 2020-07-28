@@ -2,8 +2,10 @@ package com.example;
 
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -12,8 +14,13 @@ import java.util.Map;
 
 public class Calculator {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Calculator.class);
+    private static final Logger LOGGER = LogManager.getLogger(Calculator.class);
+
     public static void main(String[] args) {
+        String logLevel = System.getProperty("logLevel");
+        if(StringUtils.equalsAny(logLevel, "INFO", "ERROR", "DEBUG")){
+            LOGGER.setLevel(Level.toLevel(logLevel));
+        }
         if(args.length == 0 || StringUtils.isBlank(args[0])){
             LOGGER.error("Expression is not passed");
             System.out.println("Pass the exression as parameter!");
